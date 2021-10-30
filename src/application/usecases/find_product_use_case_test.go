@@ -50,7 +50,7 @@ var _ = Describe("FindProductUseCase", func() {
 
 			product, err := findProductUseCase.Execute(expectedUUID)
 
-			It("should return product", func() {
+			It("should a error", func() {
 				Expect(err).To(Equal(expectedError))
 				Expect(product.ID).To(Equal(expectedUUID))
 			})
