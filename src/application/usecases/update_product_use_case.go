@@ -4,9 +4,10 @@ import (
 	"github.com/pedropazello/lojinha-product-catalog-service/src/application/ports/input"
 	"github.com/pedropazello/lojinha-product-catalog-service/src/application/ports/output"
 	"github.com/pedropazello/lojinha-product-catalog-service/src/application/repositories"
+	"github.com/pedropazello/lojinha-product-catalog-service/src/application/usecases/interfaces"
 )
 
-func NewUpdateProductUseCase(productRepository repositories.IProductRepository) *UpdateProductUseCase {
+func NewUpdateProductUseCase(productRepository repositories.IProductRepository) interfaces.IUpdateProductUseCase {
 	return &UpdateProductUseCase{
 		productRepository: productRepository,
 	}
