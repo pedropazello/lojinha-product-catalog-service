@@ -25,13 +25,8 @@ func (u *UpdateProductUseCase) Execute(inputProduct *input.ProductData) (output.
 		return output, err
 	}
 
-	if inputProduct.Name != "" {
-		product.Name = inputProduct.Name
-	}
-
-	if inputProduct.Description != "" {
-		product.Description = inputProduct.Description
-	}
+	product.Name = inputProduct.Name
+	product.Description = inputProduct.Description
 
 	err = u.productRepository.Save(product)
 	if err != nil {

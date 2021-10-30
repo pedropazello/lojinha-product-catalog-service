@@ -20,8 +20,9 @@ var _ = Describe("UpdateProductUseCase", func() {
 		updatedProductUUID := uuid.New()
 
 		inputProduct := input.ProductData{
-			ID:   updatedProductUUID,
-			Name: "Updated Product",
+			ID:          updatedProductUUID,
+			Name:        "Updated Product",
+			Description: "This is an updated product",
 		}
 
 		originalProductData := entities.Product{
@@ -39,7 +40,7 @@ var _ = Describe("UpdateProductUseCase", func() {
 			Expect(err).To(BeNil())
 			Expect(outputProduct.ID).To(Equal(updatedProductUUID))
 			Expect(outputProduct.Name).To(Equal("Updated Product"))
-			Expect(outputProduct.Description).To(Equal("This is an original product"))
+			Expect(outputProduct.Description).To(Equal("This is an updated product"))
 		})
 	})
 
