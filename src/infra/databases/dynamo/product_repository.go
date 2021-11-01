@@ -10,6 +10,8 @@ import (
 	"github.com/pedropazello/lojinha-product-catalog-service/src/domain/entities"
 )
 
+const tableName = "Products"
+
 type ProductRepository struct {
 }
 
@@ -19,20 +21,16 @@ func (p *ProductRepository) Create(product *entities.Product) (*entities.Product
 	svc := NewClient()
 
 	av, err := dynamodbattribute.MarshalMap(product)
-
 	if err != nil {
 		return product, err
 	}
-
-	tableName := "Products"
 
 	input := &dynamodb.PutItemInput{
 		Item:      av,
 		TableName: aws.String(tableName),
 	}
 
-	_, err = svc.PutItem(input)
-	if err != nil {
+	if _, err = svc.PutItem(input); err != nil {
 		return product, err
 	}
 
@@ -41,7 +39,6 @@ func (p *ProductRepository) Create(product *entities.Product) (*entities.Product
 
 func (p *ProductRepository) GetById(id string) (*entities.Product, error) {
 	svc := NewClient()
-	tableName := "Products"
 
 	product := &entities.Product{}
 
@@ -53,18 +50,15 @@ func (p *ProductRepository) GetById(id string) (*entities.Product, error) {
 			},
 		},
 	})
-
 	if err != nil {
 		return product, err
 	}
 
 	if result.Item == nil {
-		msg := "Could not find '" + id + "'"
-		return nil, errors.New(msg)
+		return nil, errors.New("Could not find '" + id + "'")
 	}
 
-	err = dynamodbattribute.UnmarshalMap(result.Item, &product)
-	if err != nil {
+	if err = dynamodbattribute.UnmarshalMap(result.Item, &product); err != nil {
 		return product, err
 	}
 
@@ -73,7 +67,6 @@ func (p *ProductRepository) GetById(id string) (*entities.Product, error) {
 
 func (p *ProductRepository) Save(product *entities.Product) error {
 	svc := NewClient()
-	tableName := "Products"
 
 	input := &dynamodb.UpdateItemInput{
 		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
@@ -98,8 +91,7 @@ func (p *ProductRepository) Save(product *entities.Product) error {
 		UpdateExpression: aws.String("SET #name = :n, #desc = :d"),
 	}
 
-	_, err := svc.UpdateItem(input)
-	if err != nil {
+	if _, err := svc.UpdateItem(input); err != nil {
 		return err
 	}
 
@@ -108,7 +100,6 @@ func (p *ProductRepository) Save(product *entities.Product) error {
 
 func (p *ProductRepository) Delete(id string) error {
 	svc := NewClient()
-	tableName := "Products"
 
 	input := &dynamodb.DeleteItemInput{
 		Key: map[string]*dynamodb.AttributeValue{
@@ -119,8 +110,7 @@ func (p *ProductRepository) Delete(id string) error {
 		TableName: aws.String(tableName),
 	}
 
-	_, err := svc.DeleteItem(input)
-	if err != nil {
+	if _, err := svc.DeleteItem(input); err != nil {
 		return err
 	}
 
