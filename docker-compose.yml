@@ -1,0 +1,17 @@
+version: '3'
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - 4566:4566
+    environment:
+      - SERVICES=dynamodb
+      - DATA_DIR=/tmp/localstack/data
+    volumes:
+      - ./data:/tmp/localstack/data
+  dynamodb-admin:
+    image: aaronshaf/dynamodb-admin
+    ports:
+      - 8001:8001
+    environment:
+      - DYNAMO_ENDPOINT=http://localstack:4566

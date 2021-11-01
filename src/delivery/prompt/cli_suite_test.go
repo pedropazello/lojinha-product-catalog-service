@@ -1,4 +1,4 @@
-package cli_test
+package prompt_test
 
 import (
 	"testing"

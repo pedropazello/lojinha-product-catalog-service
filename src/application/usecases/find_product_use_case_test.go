@@ -17,7 +17,7 @@ var _ = Describe("FindProductUseCase", func() {
 		Context("when find product by ID", func() {
 			productRepo := mocks.IProductRepository{}
 			findProductUseCase := usecases.NewFindProductUseCase(&productRepo)
-			expectedUUID := uuid.New()
+			expectedUUID := uuid.New().String()
 
 			productDataWithId := entities.Product{
 				ID:          expectedUUID,
@@ -38,7 +38,7 @@ var _ = Describe("FindProductUseCase", func() {
 		Context("when product does not exists", func() {
 			productRepo := mocks.IProductRepository{}
 			findProductUseCase := usecases.NewFindProductUseCase(&productRepo)
-			expectedUUID := uuid.Nil
+			expectedUUID := uuid.Nil.String()
 
 			expectedError := errors.New("product not found")
 

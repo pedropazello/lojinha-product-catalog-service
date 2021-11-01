@@ -14,7 +14,7 @@ var _ = Describe("DeleteProductUseCase", func() {
 	Context("when product is deleted", func() {
 		productRepo := mocks.IProductRepository{}
 		deleteProductUseCase := usecases.NewDeleteProductUseCase(&productRepo)
-		productID := uuid.New()
+		productID := uuid.New().String()
 
 		productRepo.On("Delete", productID).Return(nil)
 		err := deleteProductUseCase.Execute(productID)
@@ -27,7 +27,7 @@ var _ = Describe("DeleteProductUseCase", func() {
 	Context("when product is not deleted", func() {
 		productRepo := mocks.IProductRepository{}
 		deleteProductUseCase := usecases.NewDeleteProductUseCase(&productRepo)
-		productID := uuid.New()
+		productID := uuid.New().String()
 		expectedError := errors.New("error")
 
 		productRepo.On("Delete", productID).Return(expectedError)

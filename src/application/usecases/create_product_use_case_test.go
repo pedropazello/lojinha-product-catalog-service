@@ -24,7 +24,7 @@ var _ = Describe("CreateProductUseCase", func() {
 				Description: "Semi novo",
 			}
 
-			expectedId := uuid.New()
+			expectedId := uuid.New().String()
 			productDataWithId := entities.Product{
 				ID:          expectedId,
 				Name:        "lp Beth Carvalho No Pagode",

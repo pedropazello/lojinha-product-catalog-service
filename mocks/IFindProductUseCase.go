@@ -3,7 +3,6 @@
 package mocks
 
 import (
-	uuid "github.com/google/uuid"
 	output "github.com/pedropazello/lojinha-product-catalog-service/src/application/ports/output"
 	mock "github.com/stretchr/testify/mock"
 )
@@ -14,18 +13,18 @@ type IFindProductUseCase struct {
 }
 
 // Execute provides a mock function with given fields: productId
-func (_m *IFindProductUseCase) Execute(productId uuid.UUID) (output.ProductData, error) {
+func (_m *IFindProductUseCase) Execute(productId string) (output.ProductData, error) {
 	ret := _m.Called(productId)
 
 	var r0 output.ProductData
-	if rf, ok := ret.Get(0).(func(uuid.UUID) output.ProductData); ok {
+	if rf, ok := ret.Get(0).(func(string) output.ProductData); ok {
 		r0 = rf(productId)
 	} else {
 		r0 = ret.Get(0).(output.ProductData)
 	}
 
 	var r1 error
-	if rf, ok := ret.Get(1).(func(uuid.UUID) error); ok {
+	if rf, ok := ret.Get(1).(func(string) error); ok {
 		r1 = rf(productId)
 	} else {
 		r1 = ret.Error(1)

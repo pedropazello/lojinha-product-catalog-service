@@ -5,12 +5,14 @@ go 1.17
 require github.com/onsi/ginkgo v1.16.5
 
 require (
-	golang.org/x/net v0.0.0-20210428140749-89ef3d95e781 // indirect
+	github.com/jmespath/go-jmespath v0.4.0 // indirect
+	golang.org/x/net v0.0.0-20210614182718-04defd469f4e // indirect
 	golang.org/x/text v0.3.6 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
 
 require (
+	github.com/aws/aws-sdk-go v1.41.14
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/go-task/slim-sprig v0.0.0-20210107165309-348f09dbbbc0 // indirect

@@ -1,9 +1,7 @@
 package output
 
-import "github.com/google/uuid"
-
 type ProductData struct {
-	ID          uuid.UUID
+	ID          string
 	Name        string
 	Description string
 }

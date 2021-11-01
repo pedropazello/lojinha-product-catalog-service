@@ -25,16 +25,7 @@ func (_m *ICLI) GetStdInput() []string {
 	return r0
 }
 
-// PutStdOutput provides a mock function with given fields:
-func (_m *ICLI) PutStdOutput() string {
-	ret := _m.Called()
-
-	var r0 string
-	if rf, ok := ret.Get(0).(func() string); ok {
-		r0 = rf()
-	} else {
-		r0 = ret.Get(0).(string)
-	}
-
-	return r0
+// PutStdOutput provides a mock function with given fields: _a0
+func (_m *ICLI) PutStdOutput(_a0 string) {
+	_m.Called(_a0)
 }

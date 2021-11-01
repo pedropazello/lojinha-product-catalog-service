@@ -1,8 +1,6 @@
 package usecases
 
 import (
-	"errors"
-
 	"github.com/pedropazello/lojinha-product-catalog-service/src/application/ports/input"
 	"github.com/pedropazello/lojinha-product-catalog-service/src/application/ports/output"
 	"github.com/pedropazello/lojinha-product-catalog-service/src/application/repositories"
@@ -35,7 +33,7 @@ func (p *createProductUseCase) Execute(productInputData *input.ProductData) (*ou
 	}
 
 	if err != nil {
-		return &outputProduct, errors.New("could not create product")
+		return &outputProduct, err
 	}
 
 	return &outputProduct, nil

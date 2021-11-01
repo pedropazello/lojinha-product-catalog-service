@@ -17,7 +17,7 @@ var _ = Describe("UpdateProductUseCase", func() {
 	Context("When updating a product", func() {
 		productRepo := mocks.IProductRepository{}
 		updateProductUseCase := usecases.NewUpdateProductUseCase(&productRepo)
-		updatedProductUUID := uuid.New()
+		updatedProductUUID := uuid.New().String()
 
 		inputProduct := input.ProductData{
 			ID:          updatedProductUUID,
@@ -47,7 +47,7 @@ var _ = Describe("UpdateProductUseCase", func() {
 	Context("when the product is not updated", func() {
 		productRepo := mocks.IProductRepository{}
 		updateProductUseCase := usecases.NewUpdateProductUseCase(&productRepo)
-		updatedProductUUID := uuid.New()
+		updatedProductUUID := uuid.New().String()
 		expectedError := errors.New("error updating product")
 
 		inputProduct := input.ProductData{

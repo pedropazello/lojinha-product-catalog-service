@@ -1,10 +1,10 @@
-package cli
+package prompt
 
 import (
-	"github.com/google/uuid"
 	"github.com/pedropazello/lojinha-product-catalog-service/src/application/ports/input"
+	"github.com/pedropazello/lojinha-product-catalog-service/src/application/ports/output"
 	"github.com/pedropazello/lojinha-product-catalog-service/src/application/usecases/interfaces"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/delivery/cli/clis"
+	"github.com/pedropazello/lojinha-product-catalog-service/src/delivery/prompt/clis"
 	"github.com/pedropazello/lojinha-product-catalog-service/src/delivery/serializers"
 )
 
@@ -46,7 +46,7 @@ func (h *Handler) Start() {
 	case "delete-product":
 		h.delete()
 	default:
-		h.StdOutput = "Invalid command"
+		h.setStdOutput("Invalid command")
 	}
 }
 
@@ -59,45 +59,26 @@ func (h *Handler) create() {
 	createdProduct, err := h.createProductUseCase.Execute(&params)
 
 	if err != nil {
-		h.StdOutput = err.Error()
+		h.setStdOutput(err.Error())
 	} else {
-		serializedProduct, err := h.serializer.Serialize(createdProduct)
-
-		if err != nil {
-			h.StdOutput = err.Error()
-		}
-
-		h.StdOutput = string(serializedProduct)
+		h.putsProduct(createdProduct)
 	}
 }
 
 func (h *Handler) find() {
-	id, err := uuid.Parse(h.StdInput[1])
-
-	if err != nil {
-		h.StdOutput = err.Error()
-	}
+	id := h.StdInput[1]
 
 	product, err := h.findProductUseCase.Execute(id)
 
 	if err != nil {
-		h.StdOutput = err.Error()
+		h.setStdOutput(err.Error())
 	} else {
-		serializedProduct, err := h.serializer.Serialize(product)
-
-		if err != nil {
-			h.StdOutput = err.Error()
-		}
-
-		h.StdOutput = string(serializedProduct)
+		h.putsProduct(&product)
 	}
 }
 
 func (h *Handler) update() {
-	id, err := uuid.Parse(h.StdInput[1])
-	if err != nil {
-		h.StdOutput = err.Error()
-	}
+	id := h.StdInput[1]
 
 	params := input.ProductData{
 		ID:          id,
@@ -108,30 +89,35 @@ func (h *Handler) update() {
 	updatedProduct, err := h.updateProductUseCase.Execute(&params)
 
 	if err != nil {
-		h.StdOutput = err.Error()
+		h.setStdOutput(err.Error())
 	} else {
-		serializedProduct, err := h.serializer.Serialize(updatedProduct)
-
-		if err != nil {
-			h.StdOutput = err.Error()
-		}
-
-		h.StdOutput = string(serializedProduct)
+		h.putsProduct(&updatedProduct)
 	}
 }
 
 func (h *Handler) delete() {
-	id, err := uuid.Parse(h.StdInput[1])
+	id := h.StdInput[1]
+
+	err := h.deleteProductUseCase.Execute(id)
 
 	if err != nil {
-		h.StdOutput = err.Error()
-	}
-
-	err = h.deleteProductUseCase.Execute(id)
-
-	if err != nil {
-		h.StdOutput = err.Error()
+		h.setStdOutput(err.Error())
 	} else {
-		h.StdOutput = "product deleted"
+		h.setStdOutput("product deleted")
 	}
+}
+
+func (h *Handler) putsProduct(product *output.ProductData) {
+	serializedProduct, err := h.serializer.Serialize(product)
+
+	if err != nil {
+		h.setStdOutput(err.Error())
+	}
+
+	h.setStdOutput(string(serializedProduct))
+}
+
+func (h *Handler) setStdOutput(msg string) {
+	h.StdOutput = msg
+	h.cli.PutStdOutput(msg)
 }

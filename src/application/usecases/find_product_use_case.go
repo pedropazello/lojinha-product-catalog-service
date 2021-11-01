@@ -17,9 +17,9 @@ type FindProductUseCase struct {
 	productRepository repositories.IProductRepository
 }
 
-func (r FindProductUseCase) Execute(productId uuid.UUID) (output.ProductData, error) {
+func (r FindProductUseCase) Execute(productId string) (output.ProductData, error) {
 	output := output.ProductData{
-		ID: uuid.Nil,
+		ID: uuid.Nil.String(),
 	}
 
 	fetchedProduct, err := r.productRepository.GetById(productId)

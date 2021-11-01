@@ -1,7 +1,6 @@
 package usecases
 
 import (
-	"github.com/google/uuid"
 	"github.com/pedropazello/lojinha-product-catalog-service/src/application/repositories"
 	"github.com/pedropazello/lojinha-product-catalog-service/src/application/usecases/interfaces"
 )
@@ -16,7 +15,7 @@ type DeleteProductUseCase struct {
 	repository repositories.IProductRepository
 }
 
-func (d *DeleteProductUseCase) Execute(id uuid.UUID) error {
+func (d *DeleteProductUseCase) Execute(id string) error {
 	err := d.repository.Delete(id)
 
 	if err != nil {
