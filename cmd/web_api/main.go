@@ -11,13 +11,21 @@ func main() {
 	productRepository := dynamo.ProductRepository{}
 	findProductUseCase := usecases.NewFindProductUseCase(&productRepository)
 	createProductUseCase := usecases.NewCreateProductUseCase(&productRepository)
+	updateProductUseCase := usecases.NewUpdateProductUseCase(&productRepository)
+	deleteProductUseCase := usecases.NewDeleteProductUseCase(&productRepository)
+
 	productsController := controllers.NewProductsController(
 		findProductUseCase,
 		createProductUseCase,
+		updateProductUseCase,
+		deleteProductUseCase,
 	)
 
 	router := gin.Default()
-	router.GET("/product/:id", productsController.Show)
 	router.POST("/products", productsController.Create)
+	router.GET("/product/:id", productsController.Show)
+	router.PATCH("/product/:id", productsController.Update)
+	router.DELETE("/product/:id", productsController.Delete)
+
 	router.Run()
 }
