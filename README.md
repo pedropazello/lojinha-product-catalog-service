@@ -2,9 +2,11 @@
 
 ## Things TODO
 - rename src folder by internal [X]
-- Improve tests []
 - Add loggin system []
 - settings on viper or .env []
+- move prompt files to cmd like controller on web api []
+- swagger documentation []
+- Improve tests []
 - CI []
 - Terraform for dynamodb and maybe EC2 instance []
 - deploy []
