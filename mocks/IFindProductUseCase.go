@@ -3,7 +3,7 @@
 package mocks
 
 import (
-	output "github.com/pedropazello/lojinha-product-catalog-service/src/application/ports/output"
+	output "github.com/pedropazello/lojinha-product-catalog-service/internal/application/ports/output"
 	mock "github.com/stretchr/testify/mock"
 )
 

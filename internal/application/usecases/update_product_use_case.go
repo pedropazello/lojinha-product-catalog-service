@@ -1,10 +1,10 @@
 package usecases
 
 import (
-	"github.com/pedropazello/lojinha-product-catalog-service/src/application/ports/input"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/application/ports/output"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/application/repositories"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/application/usecases/interfaces"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/ports/input"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/ports/output"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/repositories"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/usecases/interfaces"
 )
 
 func NewUpdateProductUseCase(productRepository repositories.IProductRepository) interfaces.IUpdateProductUseCase {

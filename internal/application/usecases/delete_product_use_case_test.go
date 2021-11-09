@@ -6,8 +6,8 @@ import (
 	"github.com/google/uuid"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/usecases"
 	"github.com/pedropazello/lojinha-product-catalog-service/mocks"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/application/usecases"
 )
 
 var _ = Describe("DeleteProductUseCase", func() {

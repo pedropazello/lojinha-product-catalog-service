@@ -2,9 +2,9 @@ package usecases
 
 import (
 	"github.com/google/uuid"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/application/ports/output"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/application/repositories"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/application/usecases/interfaces"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/ports/output"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/repositories"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/usecases/interfaces"
 )
 
 func NewFindProductUseCase(productRepository repositories.IProductRepository) interfaces.IFindProductUseCase {

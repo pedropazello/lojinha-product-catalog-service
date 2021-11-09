@@ -6,10 +6,10 @@ import (
 	"github.com/google/uuid"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/usecases"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/delivery/prompt"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/domain/entities"
 	"github.com/pedropazello/lojinha-product-catalog-service/mocks"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/application/usecases"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/delivery/prompt"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/domain/entities"
 	"github.com/stretchr/testify/mock"
 )
 

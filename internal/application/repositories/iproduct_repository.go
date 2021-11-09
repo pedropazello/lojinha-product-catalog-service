@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	"github.com/pedropazello/lojinha-product-catalog-service/src/domain/entities"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/domain/entities"
 )
 
 type IProductRepository interface {

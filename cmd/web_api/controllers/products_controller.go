@@ -4,8 +4,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/application/ports/input"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/application/usecases/interfaces"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/ports/input"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/usecases/interfaces"
 )
 
 type productsController struct {

@@ -7,7 +7,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 	"github.com/google/uuid"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/domain/entities"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/domain/entities"
 )
 
 const tableName = "Products"

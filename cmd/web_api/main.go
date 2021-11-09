@@ -3,8 +3,8 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/pedropazello/lojinha-product-catalog-service/cmd/web_api/controllers"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/application/usecases"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/infra/databases/dynamo"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/usecases"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/infra/databases/dynamo"
 )
 
 func main() {

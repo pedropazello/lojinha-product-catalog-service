@@ -3,7 +3,7 @@
 package mocks
 
 import (
-	entities "github.com/pedropazello/lojinha-product-catalog-service/src/domain/entities"
+	entities "github.com/pedropazello/lojinha-product-catalog-service/internal/domain/entities"
 	mock "github.com/stretchr/testify/mock"
 )
 

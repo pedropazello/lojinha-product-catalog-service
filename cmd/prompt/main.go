@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/pedropazello/lojinha-product-catalog-service/src/application/usecases"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/delivery/prompt"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/infra/databases/dynamo"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/infra/serializers"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/infra/stdout"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/usecases"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/delivery/prompt"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/infra/databases/dynamo"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/infra/serializers"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/infra/stdout"
 )
 
 func main() {

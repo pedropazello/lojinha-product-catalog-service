@@ -1,7 +1,7 @@
 package interfaces
 
 import (
-	"github.com/pedropazello/lojinha-product-catalog-service/src/application/ports/output"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/ports/output"
 )
 
 type IFindProductUseCase interface {

@@ -1,8 +1,8 @@
 package usecases
 
 import (
-	"github.com/pedropazello/lojinha-product-catalog-service/src/application/repositories"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/application/usecases/interfaces"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/repositories"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/usecases/interfaces"
 )
 
 func NewDeleteProductUseCase(repo repositories.IProductRepository) interfaces.IDeleteProductUseCase {

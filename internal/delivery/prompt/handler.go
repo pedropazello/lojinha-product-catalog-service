@@ -1,11 +1,11 @@
 package prompt
 
 import (
-	"github.com/pedropazello/lojinha-product-catalog-service/src/application/ports/input"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/application/ports/output"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/application/usecases/interfaces"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/delivery/prompt/clis"
-	"github.com/pedropazello/lojinha-product-catalog-service/src/delivery/serializers"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/ports/input"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/ports/output"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/usecases/interfaces"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/delivery/prompt/clis"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/delivery/serializers"
 )
 
 func NewHandler(c interfaces.ICreateProductUseCase, f interfaces.IFindProductUseCase,
