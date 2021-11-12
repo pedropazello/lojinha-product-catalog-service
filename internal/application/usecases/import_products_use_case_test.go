@@ -6,37 +6,47 @@ import (
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/usecases"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/usecases/interfaces"
 	"github.com/pedropazello/lojinha-product-catalog-service/internal/domain/entities"
 	"github.com/pedropazello/lojinha-product-catalog-service/mocks"
 	"github.com/stretchr/testify/mock"
 )
 
 var _ = Describe("ImportProductsUseCase Execute", func() {
+	var repository *mocks.IProductRepository
+	var usecase interfaces.IImportProductsUseCase
+	productListInput := []entities.Product{}
+
+	BeforeEach(func() {
+		repository = &mocks.IProductRepository{}
+		usecase = usecases.NewImportProductsUseCase(repository)
+
+		product1 := entities.Product{
+			Name:        "Product 1",
+			Description: "Description 1",
+		}
+
+		product2 := entities.Product{
+			Name:        "Product 2",
+			Description: "Description 2",
+		}
+
+		product3 := entities.Product{
+			Name:        "Product 3",
+			Description: "Description 3",
+		}
+
+		productListInput = append(productListInput, product1)
+		productListInput = append(productListInput, product2)
+		productListInput = append(productListInput, product3)
+	})
+
+	AfterEach(func() {
+		productListInput = []entities.Product{}
+	})
+
 	Context("When any product are invalid", func() {
 		It("Should return error message for this product", func() {
-			repository := &mocks.IProductRepository{}
-			usecase := usecases.NewImportProductsUseCase(repository)
-
-			product1 := entities.Product{
-				Name:        "Product 1",
-				Description: "Description 1",
-			}
-
-			product2 := entities.Product{
-				Name:        "Product 2",
-				Description: "Description 2",
-			}
-
-			product3 := entities.Product{
-				Name:        "Product 3",
-				Description: "Description 3",
-			}
-
-			productListInput := []entities.Product{}
-			productListInput = append(productListInput, product1)
-			productListInput = append(productListInput, product2)
-			productListInput = append(productListInput, product3)
-
 			errorMsg := errors.New("fail")
 			expectedErrMsg := errors.New("fail; Product failed:Product 1")
 
@@ -52,29 +62,6 @@ var _ = Describe("ImportProductsUseCase Execute", func() {
 
 	Context("When all products are valid", func() {
 		It("import all products", func() {
-			repository := &mocks.IProductRepository{}
-			usecase := usecases.NewImportProductsUseCase(repository)
-
-			product1 := entities.Product{
-				Name:        "Product 1",
-				Description: "Description 1",
-			}
-
-			product2 := entities.Product{
-				Name:        "Product 2",
-				Description: "Description 2",
-			}
-
-			product3 := entities.Product{
-				Name:        "Product 3",
-				Description: "Description 3",
-			}
-
-			productListInput := []entities.Product{}
-			productListInput = append(productListInput, product1)
-			productListInput = append(productListInput, product2)
-			productListInput = append(productListInput, product3)
-
 			repository.On("Save", mock.Anything).Return(nil)
 
 			productsImported, errors := usecase.Execute(productListInput)
