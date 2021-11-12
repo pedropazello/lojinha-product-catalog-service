@@ -1,6 +1,8 @@
 package usecases
 
 import (
+	"fmt"
+
 	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/ports/input"
 	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/repositories"
 	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/usecases/interfaces"
@@ -30,6 +32,7 @@ func (u *importProductsUseCase) Execute(productsInput []input.ProductData) (int,
 		err := u.repository.Save(&product)
 
 		if err != nil {
+			err = fmt.Errorf("%w; Product failed:"+productInput.Name, err)
 			errs = append(errs, err)
 		} else {
 			productsInported += 1

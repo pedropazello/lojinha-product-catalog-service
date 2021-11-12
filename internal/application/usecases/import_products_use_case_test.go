@@ -38,6 +38,7 @@ var _ = Describe("ImportProductsUseCase Execute", func() {
 			productListInput = append(productListInput, product3)
 
 			errorMsg := errors.New("fail")
+			expectedErrMsg := errors.New("fail; Product failed:Product 1")
 
 			repository.On("Save", mock.Anything).Return(errorMsg)
 
@@ -45,7 +46,7 @@ var _ = Describe("ImportProductsUseCase Execute", func() {
 
 			Expect(productsImported).To(BeEquivalentTo(0))
 			Expect(len(errors)).To(BeEquivalentTo(3))
-			Expect(errors[0]).To(BeEquivalentTo(errorMsg))
+			Expect(errors[0].Error()).To(BeEquivalentTo(expectedErrMsg.Error()))
 		})
 	})
 
