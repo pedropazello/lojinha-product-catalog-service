@@ -4,6 +4,6 @@ import (
 	"github.com/pedropazello/lojinha-product-catalog-service/internal/domain/entities"
 )
 
-type IReadFileWithProductsUseCase interface {
-	Execute(file []byte) ([]entities.Product, error)
+type IImportProductsUseCase interface {
+	Execute([]entities.Product) (int, []error)
 }

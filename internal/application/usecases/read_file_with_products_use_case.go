@@ -2,7 +2,7 @@ package usecases
 
 import (
 	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/parsers"
-	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/ports/output"
+	"github.com/pedropazello/lojinha-product-catalog-service/internal/domain/entities"
 )
 
 type readFileWithProductsUseCase struct {
@@ -15,8 +15,8 @@ func NewReadFileWithProductsUseCase(parser parsers.IProductsFileParser) *readFil
 	}
 }
 
-func (r *readFileWithProductsUseCase) Execute(file []byte) ([]output.ProductData, error) {
-	products := []output.ProductData{}
+func (r *readFileWithProductsUseCase) Execute(file []byte) ([]entities.Product, error) {
+	products := []entities.Product{}
 
 	parsedProducts, err := r.parser.Parse(file)
 	if err != nil {
@@ -24,7 +24,7 @@ func (r *readFileWithProductsUseCase) Execute(file []byte) ([]output.ProductData
 	}
 
 	for _, product := range parsedProducts {
-		products = append(products, output.ProductData{
+		products = append(products, entities.Product{
 			Name:        product.Name,
 			Description: product.Description,
 		})

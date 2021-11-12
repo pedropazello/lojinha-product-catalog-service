@@ -3,13 +3,12 @@ package usecases
 import (
 	"fmt"
 
-	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/ports/input"
 	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/repositories"
 	"github.com/pedropazello/lojinha-product-catalog-service/internal/application/usecases/interfaces"
 	"github.com/pedropazello/lojinha-product-catalog-service/internal/domain/entities"
 )
 
-func NewImportProductsUseCase(repository repositories.IProductRepository) interfaces.IImportProductUseCase {
+func NewImportProductsUseCase(repository repositories.IProductRepository) interfaces.IImportProductsUseCase {
 	return &importProductsUseCase{
 		repository: repository,
 	}
@@ -19,7 +18,7 @@ type importProductsUseCase struct {
 	repository repositories.IProductRepository
 }
 
-func (u *importProductsUseCase) Execute(productsInput []input.ProductData) (int, []error) {
+func (u *importProductsUseCase) Execute(productsInput []entities.Product) (int, []error) {
 	productsInported := 0
 	errs := []error{}
 

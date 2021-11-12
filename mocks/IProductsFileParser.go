@@ -13,14 +13,16 @@ type IProductsFileParser struct {
 }
 
 // Parse provides a mock function with given fields: file
-func (_m *IProductsFileParser) Parse(file []byte) (entities.Product, error) {
+func (_m *IProductsFileParser) Parse(file []byte) ([]entities.Product, error) {
 	ret := _m.Called(file)
 
-	var r0 entities.Product
-	if rf, ok := ret.Get(0).(func([]byte) entities.Product); ok {
+	var r0 []entities.Product
+	if rf, ok := ret.Get(0).(func([]byte) []entities.Product); ok {
 		r0 = rf(file)
 	} else {
-		r0 = ret.Get(0).(entities.Product)
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).([]entities.Product)
+		}
 	}
 
 	var r1 error

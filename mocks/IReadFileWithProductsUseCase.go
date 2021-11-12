@@ -3,7 +3,8 @@
 package mocks
 
 import (
-	output "github.com/pedropazello/lojinha-product-catalog-service/internal/application/ports/output"
+	entities "github.com/pedropazello/lojinha-product-catalog-service/internal/domain/entities"
+
 	mock "github.com/stretchr/testify/mock"
 )
 
@@ -12,34 +13,25 @@ type IReadFileWithProductsUseCase struct {
 	mock.Mock
 }
 
-// Execute provides a mock function with given fields: filePath
-func (_m *IReadFileWithProductsUseCase) Execute(filePath string) ([]output.ProductData, []error, error) {
-	ret := _m.Called(filePath)
+// Execute provides a mock function with given fields: file
+func (_m *IReadFileWithProductsUseCase) Execute(file []byte) ([]entities.Product, error) {
+	ret := _m.Called(file)
 
-	var r0 []output.ProductData
-	if rf, ok := ret.Get(0).(func(string) []output.ProductData); ok {
-		r0 = rf(filePath)
+	var r0 []entities.Product
+	if rf, ok := ret.Get(0).(func([]byte) []entities.Product); ok {
+		r0 = rf(file)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).([]output.ProductData)
+			r0 = ret.Get(0).([]entities.Product)
 		}
 	}
 
-	var r1 []error
-	if rf, ok := ret.Get(1).(func(string) []error); ok {
-		r1 = rf(filePath)
+	var r1 error
+	if rf, ok := ret.Get(1).(func([]byte) error); ok {
+		r1 = rf(file)
 	} else {
-		if ret.Get(1) != nil {
-			r1 = ret.Get(1).([]error)
-		}
+		r1 = ret.Error(1)
 	}
 
-	var r2 error
-	if rf, ok := ret.Get(2).(func(string) error); ok {
-		r2 = rf(filePath)
-	} else {
-		r2 = ret.Error(2)
-	}
-
-	return r0, r1, r2
+	return r0, r1
 }
